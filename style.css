@@ -1,0 +1,365 @@
+:root {
+  /* Base color variables */
+  --primary: #ff6b4a;
+  --text: #2d3748;
+  --white: #ffffff;
+  --radius: 0.5rem;
+  --transition: all 0.4s ease;
+
+  /* Dark theme (level 0) */
+  --level0-primary: #363062;
+  --level0-bg: #121212;
+  --level0-glow: rgba(54, 48, 98, 0.3);
+
+  /* Level 1-10: Original colors */
+  --level1-primary: #ff6b4a;
+  --level1-bg: #f8fafc;
+  --level1-glow: rgba(255, 107, 74, 0.4);
+
+  --level2-primary: #5b68df;
+  --level2-bg: #ebf4ff;
+  --level2-glow: rgba(91, 104, 223, 0.4);
+
+  --level3-primary: #10b981;
+  --level3-bg: #ecfdf5;
+  --level3-glow: rgba(16, 185, 129, 0.4);
+
+  --level4-primary: #9333ea;
+  --level4-bg: #f5f3ff;
+  --level4-glow: rgba(147, 51, 234, 0.4);
+
+  --level5-primary: #06b6d4;
+  --level5-bg: #ecfeff;
+  --level5-glow: rgba(6, 182, 212, 0.4);
+
+  --level6-primary: #f59e0b;
+  --level6-bg: #fffbeb;
+  --level6-glow: rgba(245, 158, 11, 0.4);
+
+  --level7-primary: #e11d48;
+  --level7-bg: #fff1f2;
+  --level7-glow: rgba(225, 29, 72, 0.4);
+
+  --level8-primary: #84cc16;
+  --level8-bg: #f7fee7;
+  --level8-glow: rgba(132, 204, 22, 0.4);
+
+  --level9-primary: #0ea5e9;
+  --level9-bg: #f0f9ff;
+  --level9-glow: rgba(14, 165, 233, 0.4);
+
+  --level10-primary: #d946ef;
+  --level10-bg: #fdf4ff;
+  --level10-glow: rgba(217, 70, 239, 0.4);
+
+  /* Initial value - dark theme for level 0 */
+  --current-primary: var(--level0-primary);
+  --current-bg: var(--level0-bg);
+  --current-glow: var(--level0-glow);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: var(--text);
+  line-height: 1.5;
+  overflow: hidden;
+  transition: var(--transition);
+  background-color: var(--current-bg);
+}
+
+/* Background animation elements */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-color {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  transition: var(--transition);
+}
+
+.background-color:nth-child(1) {
+  background-color: var(--current-primary);
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  animation: float1 15s infinite alternate;
+}
+
+.background-color:nth-child(2) {
+  background-color: var(--current-glow);
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  left: -100px;
+  animation: float2 20s infinite alternate;
+}
+
+.background-color:nth-child(3) {
+  background-color: var(--current-primary);
+  width: 300px;
+  height: 300px;
+  bottom: 30%;
+  right: 20%;
+  opacity: 0.4;
+  animation: float3 17s infinite alternate;
+}
+
+@keyframes float1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50px, 50px);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, -30px);
+  }
+}
+
+@keyframes float3 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(-30px, 30px) rotate(30deg);
+  }
+}
+
+/* Glassmorphism counter container */
+.counter-container {
+  position: relative;
+  text-align: center;
+  padding: 3rem;
+  border-radius: var(--radius);
+  max-width: 28rem;
+  width: 90%;
+  transition: var(--transition);
+  overflow: hidden;
+
+  /* Glassmorphism base */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px var(--current-glow);
+}
+
+/* Special dark mode styling for level 0 */
+body.level-0 .counter-container {
+  background: rgba(30, 30, 30, 0.5);
+  border: 1px solid rgba(80, 80, 80, 0.3);
+}
+
+body.level-0 .counter-value {
+  color: #e0e0e0;
+}
+
+body.level-0 h1 {
+  color: var(--current-primary);
+}
+
+.counter-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--current-glow);
+}
+
+.counter-container .content {
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--current-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.counter-value {
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  color: var(--text);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.counter-value.level-up {
+  animation: pulse-scale 0.7s ease;
+}
+
+@keyframes pulse-scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.counter-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--current-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  background-color: var(--current-primary);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--current-glow);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.reset-btn {
+  background-color: #f44336;
+}
+
+.reset-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Level-specific base classes for levels 0-10 */
+body.level-0 {
+  --current-primary: var(--level0-primary);
+  --current-bg: var(--level0-bg);
+  --current-glow: var(--level0-glow);
+}
+
+body.level-1 {
+  --current-primary: var(--level1-primary);
+  --current-bg: var(--level1-bg);
+  --current-glow: var(--level1-glow);
+}
+
+body.level-2 {
+  --current-primary: var(--level2-primary);
+  --current-bg: var(--level2-bg);
+  --current-glow: var(--level2-glow);
+}
+
+body.level-3 {
+  --current-primary: var(--level3-primary);
+  --current-bg: var(--level3-bg);
+  --current-glow: var(--level3-glow);
+}
+
+body.level-4 {
+  --current-primary: var(--level4-primary);
+  --current-bg: var(--level4-bg);
+  --current-glow: var(--level4-glow);
+}
+
+body.level-5 {
+  --current-primary: var(--level5-primary);
+  --current-bg: var(--level5-bg);
+  --current-glow: var(--level5-glow);
+}
+
+body.level-6 {
+  --current-primary: var(--level6-primary);
+  --current-bg: var(--level6-bg);
+  --current-glow: var(--level6-glow);
+}
+
+body.level-7 {
+  --current-primary: var(--level7-primary);
+  --current-bg: var(--level7-bg);
+  --current-glow: var(--level7-glow);
+}
+
+body.level-8 {
+  --current-primary: var(--level8-primary);
+  --current-bg: var(--level8-bg);
+  --current-glow: var(--level8-glow);
+}
+
+body.level-9 {
+  --current-primary: var(--level9-primary);
+  --current-bg: var(--level9-bg);
+  --current-glow: var(--level9-glow);
+}
+
+body.level-10 {
+  --current-primary: var(--level10-primary);
+  --current-bg: var(--level10-bg);
+  --current-glow: var(--level10-glow);
+}
+
+.level-info {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: var(--transition);
+}
+
+@media (max-width: 480px) {
+  .counter-container {
+    padding: 2rem;
+  }
+
+  .counter-value {
+    font-size: 4rem;
+  }
+
+  button {
+    padding: 0.6rem 1.2rem;
+  }
+}
